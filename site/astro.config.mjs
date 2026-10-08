@@ -15,7 +15,9 @@ export default defineConfig({
       },
       social: [
         { icon: "github", label: "GitHub", href: "https://github.com/mbaneshi/persian-cli" },
+        { icon: "external", label: "mbaneshi.ir", href: "https://mbaneshi.ir" },
       ],
+      components: { Footer: "./src/components/Footer.astro" },
       editLink: { baseUrl: "https://github.com/mbaneshi/persian-cli/edit/dev/site/" },
       customCss: [
         "@fontsource-variable/inter",

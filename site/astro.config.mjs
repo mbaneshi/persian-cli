@@ -33,7 +33,7 @@ export default defineConfig({
         },
       },
       sidebar: [
-        { label: "Start here", translations: { fa: "شروع" }, items: [{ slug: "problem-map" }] },
+        { label: "Start here", translations: { fa: "شروع" }, items: [{ slug: "problem-map" }, { slug: "prior-work" }] },
       ],
     }),
   ],

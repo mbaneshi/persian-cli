@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Ideas, questions and RFCs
+    url: https://github.com/mbaneshi/persian-cli/discussions
+    about: Direction, design questions and RFCs live in Discussions.
+  - name: Read RFC 0001 first
+    url: https://github.com/mbaneshi/persian-cli/discussions/12
+    about: The research program, roadmap and contribution model.

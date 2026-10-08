@@ -1,0 +1,51 @@
+---
+title: نقشهٔ راه
+description: شش فاز، از پژوهش ریشه‌ای تا استانداردی برای مالکیت دوجهتی، و اینکه اکنون کجا هستیم.
+---
+
+import { Steps, Badge, CardGrid, LinkCard } from "@astrojs/starlight/components";
+
+برنامهٔ پژوهشی در [RFC 0001](https://github.com/mbaneshi/persian-cli/discussions/12) پیشنهاد شده و برای نظردهی باز است. هر فاز یک [نقطهٔ عطف (milestone)](https://github.com/mbaneshi/persian-cli/milestones) است و همهٔ کارها روی [تختهٔ نقشهٔ راه](https://github.com/users/mbaneshi/projects/22) آمده‌اند.
+
+<Steps>
+
+1. **فاز ۰: نقشهٔ ریشه‌یابی** <Badge text="در جریان" variant="caution" />
+
+   یادداشت‌هایی بر پایهٔ منابع دست‌اول دربارهٔ اینکه هر لایه کار کیست. [بررسی کارهای پیشین](/persian-cli/fa/prior-work/) انجام شده است.
+   *معیار پایان:* برای هر لایه یک یادداشت ریشه‌یابی مستند با منبع.
+
+2. **فاز ۱: مجموعه‌آزمون و کارنامه** <Badge text="بعدی" variant="note" />
+
+   رشته‌های آزمون دشوار و ابزاری که هر ترکیب ترمینال، مالتی‌پلکسر و برنامه را امتیاز می‌دهد.
+   *معیار پایان:* نسخهٔ ۰ کارنامه برای دست‌کم ۳ ترمینال منتشر شود.
+
+3. **فاز ۲: قلم‌ها و ترمینال‌ها** <Badge text="برنامه‌ریزی‌شده" />
+
+   پیشنهاد قلم، پیکربندی و اصلاحات رندر در پروژه‌های بالادستی.
+
+4. **فاز ۳: مالتی‌پلکسرها** <Badge text="برنامه‌ریزی‌شده" />
+
+   عبور سالم شکل‌دهی و دوجهتی از tmux و Zellij.
+
+5. **فاز ۴: ویرایشگرها و چارچوب‌های TUI** <Badge text="برنامه‌ریزی‌شده" />
+
+   اصلاح یا افزونه برای Neovim، readline/zle، Ink، ratatui و مانند آن‌ها.
+
+6. **فاز ۵: استاندارد مالکیت دوجهتی** <Badge text="برنامه‌ریزی‌شده" />
+
+   همکاری با نگه‌دارندگان ترمینال‌ها و برنامه‌ها برای تکمیل و پذیرش یک استاندارد توافق بر سر دوجهتی.
+
+</Steps>
+
+## تمرکز کنونی
+
+سه شکافی که [بررسی کارهای پیشین](/persian-cli/fa/prior-work/) نشان داد هیچ‌کس به آن‌ها نپرداخته، به‌علاوهٔ مجموعه‌آزمونی که هر اصلاحی با آن سنجیده می‌شود.
+
+<CardGrid>
+  <LinkCard title="پهنا: متن شکل‌داده‌شده در برابر شبکهٔ خانه‌ها" description="لایهٔ ۳ · پژوهش · ⁦#13⁩" href="https://github.com/mbaneshi/persian-cli/issues/13" />
+  <LinkCard title="مالکیت دوجهتی: ترمینال یا برنامه؟" description="لایهٔ ۵ · پژوهش · RFC · ⁦#14⁩" href="https://github.com/mbaneshi/persian-cli/issues/14" />
+  <LinkCard title="مالتی‌پلکسرها: tmux و Zellij" description="لایهٔ ۸ · پژوهش · ⁦#15⁩" href="https://github.com/mbaneshi/persian-cli/issues/15" />
+  <LinkCard title="مجموعه‌آزمون نسخهٔ ۰" description="فاز ۱ · مناسب شروع · ⁦#17⁩" href="https://github.com/mbaneshi/persian-cli/issues/17" />
+  <LinkCard title="طراحی ابزار کارنامه" description="فاز ۱ · RFC · ⁦#18⁩" href="https://github.com/mbaneshi/persian-cli/issues/18" />
+  <LinkCard title="بازتولید: فارسی کجا می‌شکند؟" description="عملی · مناسب شروع · ⁦#16⁩" href="https://github.com/mbaneshi/persian-cli/issues/16" />
+</CardGrid>

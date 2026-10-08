@@ -1,0 +1,54 @@
+---
+title: Contribute
+description: How to help, from a 15-minute breakage report to upstream fixes.
+---
+
+import { CardGrid, Card, LinkButton } from "@astrojs/starlight/components";
+
+persian-cli is an open **research lab**. Most of the useful contributions right now aren't code, and you don't need to be an expert in Unicode to make one.
+
+<CardGrid>
+  <Card title="Report a breakage" icon="warning">
+    Have a terminal and 15 minutes? Print our reference line and tell us what breaks.
+    [Breakage report →](https://github.com/mbaneshi/persian-cli/issues/new?template=breakage.yml)
+  </Card>
+  <Card title="Add test strings" icon="pencil">
+    Write Persian, Arabic, Urdu, Hebrew or another RTL script? Your hard cases make every fix general.
+    [Test corpus #17 →](https://github.com/mbaneshi/persian-cli/issues/17)
+  </Card>
+  <Card title="Answer a research question" icon="magnifier">
+    Pick a question and answer it from primary sources: specs, code at a commit, upstream issues.
+    [Research issues →](https://github.com/mbaneshi/persian-cli/labels/type%2Fresearch)
+  </Card>
+  <Card title="Translate" icon="translate">
+    The site is English and Persian. Arabic is next, and other RTL scripts are welcome.
+    [Arabic locale #19 →](https://github.com/mbaneshi/persian-cli/issues/19)
+  </Card>
+  <Card title="Point us to prior work" icon="open-book">
+    A project, spec, patch or thread we should study.
+    [Suggest prior art →](https://github.com/mbaneshi/persian-cli/issues/new?template=prior-art.yml)
+  </Card>
+  <Card title="Shape the direction" icon="comment-alt">
+    Weigh in on the research program and its open questions.
+    [RFC 0001 →](https://github.com/mbaneshi/persian-cli/discussions/12)
+  </Card>
+</CardGrid>
+
+## Ground rules
+
+1. **Logical order is sacred.** Never fix display by reversing strings or substituting presentation forms.
+2. **Cite primary sources**, and link the exact commit you read.
+3. **Keep verified and claimed apart.** "The README says" is not "the code does".
+4. **Measure.** Every claim about behaviour comes with a reproducible case.
+5. **Script-general.** If it only works for Persian, say why, or generalise it.
+
+## How work is organised
+
+- **Phases** are [milestones](https://github.com/mbaneshi/persian-cli/milestones); everything is on the [roadmap board](https://github.com/users/mbaneshi/projects/22).
+- **Layers** are `layer/*` labels, following the [problem map](/persian-cli/problem-map/).
+- **RFCs** live in [Discussions](https://github.com/mbaneshi/persian-cli/discussions) as `RFC NNNN: …`.
+- New here? Try [good first issues](https://github.com/mbaneshi/persian-cli/labels/good%20first%20issue).
+
+Code is licensed under Apache-2.0; docs, research notes, translations and the test corpus under CC BY 4.0. Everyone follows the [Code of Conduct](https://github.com/mbaneshi/persian-cli/blob/dev/CODE_OF_CONDUCT.md).
+
+<LinkButton href="https://github.com/mbaneshi/persian-cli/blob/dev/CONTRIBUTING.md" icon="external">Read CONTRIBUTING.md</LinkButton>

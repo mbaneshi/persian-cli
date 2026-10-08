@@ -163,3 +163,7 @@ h1#_top,
   letter-spacing: 0;
 }
 :root[lang="fa"] * { letter-spacing: 0; }
+
+/* Persian has no italics and must never be letter-spaced or set in a Latin monospace face. */
+:root[lang="fa"] :is(em, i, cite) { font-style: normal; color: var(--sl-color-accent-high); }
+:root[lang="fa"] .sl-badge { font-family: var(--brand-rtl); letter-spacing: 0; text-transform: none; }

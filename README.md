@@ -1,5 +1,12 @@
 # persian-cli
 
+[![Website](https://img.shields.io/badge/site-mbaneshi.github.io%2Fpersian--cli-E5B53B)](https://mbaneshi.github.io/persian-cli/)
+[![RFC 0001](https://img.shields.io/badge/RFC%200001-open%20for%20comment-8A6FB5)](https://github.com/mbaneshi/persian-cli/discussions/12)
+[![Roadmap](https://img.shields.io/badge/roadmap-project%20board-4A86C5)](https://github.com/users/mbaneshi/projects/22)
+[![good first issues](https://img.shields.io/github/issues/mbaneshi/persian-cli/good%20first%20issue?label=good%20first%20issues&color=4FAE9A)](https://github.com/mbaneshi/persian-cli/labels/good%20first%20issue)
+[![License: Apache-2.0](https://img.shields.io/badge/code-Apache--2.0-1A1A1A)](LICENSE)
+[![Docs: CC BY 4.0](https://img.shields.io/badge/docs-CC%20BY%204.0-1A1A1A)](LICENSE-docs)
+
 **A research lab for making Persian a first-class language in the terminal.**
 
 > ### North star
@@ -109,6 +116,8 @@ Ten earlier projects attack parts of this problem: terminal emulators, PTY proxi
 The results from each phase are published here as we go: research notes, scorecards,
 and links to upstream issues and pull requests.
 
+Each phase is a [milestone](https://github.com/mbaneshi/persian-cli/milestones), and every item is on the [roadmap board](https://github.com/users/mbaneshi/projects/22). The program itself is up for comment in [RFC 0001](https://github.com/mbaneshi/persian-cli/discussions/12).
+
 ## Non-goals
 
 - **A new terminal emulator.** Not unless the research shows there's no other way.
@@ -120,17 +129,20 @@ and links to upstream issues and pull requests.
 
 ## Status
 
-**Day 0.** The repository and the north star exist. Phase 0 (the root-cause map)
-is next.
+**Phase 0 (root-cause map) is underway.** Done so far: the [prior-work survey](https://mbaneshi.github.io/persian-cli/prior-work/) of ten existing projects, read in code. Open now: [width](https://github.com/mbaneshi/persian-cli/issues/13), [bidi ownership](https://github.com/mbaneshi/persian-cli/issues/14), [multiplexers](https://github.com/mbaneshi/persian-cli/issues/15), and the [v0 test corpus](https://github.com/mbaneshi/persian-cli/issues/17).
 
 ## Contributing
 
-This is an open lab. The most useful contributions right now are:
+This is an open lab, and most of the useful contributions right now aren't code:
 
-- **Reproducible breakages.** Your terminal, multiplexer, app, and font versions;
-  the exact input; a screenshot of what you expected and what you got.
-- **Pointers to prior work.** Specs, patches, mailing-list threads, abandoned
-  attempts. Plenty of people have worked on this before; we want to build on
-  them, not repeat them.
-- **Other scripts.** If you write Arabic, Urdu, Pashto, Kurdish, Hebrew, or
-  another RTL or joining script, your test cases make the fixes general.
+- **Reproducible breakages.** Your terminal, multiplexer, app and font versions, the exact input, and expected vs. actual. [Open a breakage report](https://github.com/mbaneshi/persian-cli/issues/new?template=breakage.yml).
+- **Test strings.** If you write Persian, Arabic, Urdu, Pashto, Kurdish, Hebrew or another RTL or joining script, your cases make the fixes general ([#17](https://github.com/mbaneshi/persian-cli/issues/17)).
+- **Research.** Pick a [research question](https://github.com/mbaneshi/persian-cli/labels/type%2Fresearch) and answer it from primary sources.
+- **Pointers to prior work.** Specs, patches, mailing-list threads, abandoned attempts.
+- **Direction.** Weigh in on [RFC 0001](https://github.com/mbaneshi/persian-cli/discussions/12).
+
+Read [CONTRIBUTING.md](CONTRIBUTING.md) for how work is organised, and the [Code of Conduct](CODE_OF_CONDUCT.md).
+
+## License
+
+Code is licensed under [Apache-2.0](LICENSE). Documentation, research notes, translations and the test corpus are licensed under [CC BY 4.0](LICENSE-docs).

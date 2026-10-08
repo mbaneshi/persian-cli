@@ -1,0 +1,59 @@
+name: Breakage report
+description: Persian (or another RTL script) renders or behaves wrongly in your terminal stack
+title: "Breakage: <terminal> / <multiplexer> / <app>: <what goes wrong>"
+labels: ["type/breakage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you! Precise reports are the most useful contribution right now. If you can, use the reference line below so results are comparable.
+        ```
+        نسخهٔ 2.1 از «persian-cli» را با دستورِ `make test` (لا ۱۲۳) اجرا کنید.
+        ```
+  - type: input
+    id: terminal
+    attributes: { label: Terminal emulator and version, placeholder: "WezTerm 20240203-110809" }
+    validations: { required: true }
+  - type: input
+    id: multiplexer
+    attributes: { label: Multiplexer and version (or "none"), placeholder: "Zellij 0.44.3" }
+    validations: { required: true }
+  - type: input
+    id: app
+    attributes: { label: Application and version (or "shell"), placeholder: "Neovim 0.11.2 / zsh 5.9 / less 668" }
+    validations: { required: true }
+  - type: input
+    id: font
+    attributes: { label: Font(s), placeholder: "JetBrains Mono + Vazirmatn fallback" }
+  - type: input
+    id: os
+    attributes: { label: OS and version, placeholder: "macOS 26.1 / Ubuntu 26.04 / Windows 11" }
+    validations: { required: true }
+  - type: textarea
+    id: input
+    attributes:
+      label: Exact input
+      description: Paste the text, or the command that produces it. Keep it in logical (typed) order.
+      render: text
+    validations: { required: true }
+  - type: textarea
+    id: expected
+    attributes: { label: What you expected }
+    validations: { required: true }
+  - type: textarea
+    id: actual
+    attributes:
+      label: What you got
+      description: Screenshots are very welcome. What breaks? Disconnected letters, reversed words, misplaced digits, the cursor, copy/paste…
+    validations: { required: true }
+  - type: checkboxes
+    id: layers
+    attributes:
+      label: Which layers look involved? (best guess is fine)
+      options:
+        - label: "Shaping (letters not joined)"
+        - label: "Bidi (wrong order)"
+        - label: "Width / cursor position"
+        - label: "Selection / copy"
+        - label: "Input (typing, ZWNJ)"
+        - label: "Fonts (missing glyphs, wrong metrics)"

@@ -1,0 +1,58 @@
+---
+title: مشارکت
+description: چگونه کمک کنید؛ از یک گزارش خرابی پانزده‌دقیقه‌ای تا اصلاح در پروژه‌های بالادستی.
+---
+
+import { CardGrid, Card, LinkButton } from "@astrojs/starlight/components";
+
+persian-cli یک **آزمایشگاه پژوهشی** باز است. بیشتر مشارکت‌های ارزشمند در این مرحله کدنویسی نیستند و برای انجامشان لازم نیست متخصص یونیکد باشید.
+
+<CardGrid>
+  <Card title="گزارش خرابی" icon="warning">
+    یک ترمینال و پانزده دقیقه وقت دارید؟ خط مرجع ما را چاپ کنید و بگویید چه چیزی می‌شکند.
+    [فرم گزارش خرابی ←](https://github.com/mbaneshi/persian-cli/issues/new?template=breakage.yml)
+  </Card>
+  <Card title="افزودن رشته‌های آزمون" icon="pencil">
+    به فارسی، عربی، اردو، عبری یا خط راست‌به‌چپ دیگری می‌نویسید؟ نمونه‌های دشوار شما هر اصلاحی را فراگیر می‌کند.
+    [مجموعه‌آزمون #17 ←](https://github.com/mbaneshi/persian-cli/issues/17)
+  </Card>
+  <Card title="پاسخ به یک پرسش پژوهشی" icon="magnifier">
+    یک پرسش را بردارید و از منابع دست‌اول پاسخ دهید: استانداردها، کد در یک کامیت مشخص، مسئله‌های بالادستی.
+    [پرسش‌های پژوهشی ←](https://github.com/mbaneshi/persian-cli/labels/type%2Fresearch)
+  </Card>
+  <Card title="ترجمه" icon="translate">
+    سایت به انگلیسی و فارسی است. عربی نوبت بعدی است و خط‌های راست‌به‌چپ دیگر هم خوش‌آمدند.
+    [نسخهٔ عربی #19 ←](https://github.com/mbaneshi/persian-cli/issues/19)
+  </Card>
+  <Card title="معرفی کارهای پیشین" icon="open-book">
+    پروژه، استاندارد، وصله یا رشته‌گفت‌وگویی که باید مطالعه کنیم.
+    [پیشنهاد کار پیشین ←](https://github.com/mbaneshi/persian-cli/issues/new?template=prior-art.yml)
+  </Card>
+  <Card title="شکل‌دادن به مسیر" icon="comment-alt">
+    دربارهٔ برنامهٔ پژوهشی و پرسش‌های بازش نظر بدهید.
+    [RFC 0001 ←](https://github.com/mbaneshi/persian-cli/discussions/12)
+  </Card>
+</CardGrid>
+
+## قواعد پایه
+
+۱. **ترتیب منطقی مقدس است.** هرگز نمایش را با وارونه‌کردن رشته یا جایگزینی فرم‌های نمایشی «درست» نکنید.
+
+۲. **به منابع دست‌اول ارجاع دهید** و کامیت دقیقی را که خوانده‌اید پیوند دهید.
+
+۳. **تأییدشده و ادعاشده را جدا نگه دارید.** «README می‌گوید» با «کد انجام می‌دهد» یکی نیست.
+
+۴. **اندازه بگیرید.** هر ادعایی دربارهٔ رفتار باید با یک نمونهٔ بازتولیدپذیر همراه باشد.
+
+۵. **فراگیر برای همهٔ خط‌ها.** اگر چیزی فقط برای فارسی کار می‌کند، دلیلش را بگویید یا آن را عمومی کنید.
+
+## کارها چگونه سازمان یافته‌اند
+
+- **فازها** همان [نقاط عطف](https://github.com/mbaneshi/persian-cli/milestones) هستند و همه‌چیز روی [تختهٔ نقشهٔ راه](https://github.com/users/mbaneshi/projects/22) است.
+- **لایه‌ها** برچسب‌های `layer/*` هستند و از [نقشهٔ مسئله](/persian-cli/fa/problem-map/) پیروی می‌کنند.
+- **RFCها** در [Discussions](https://github.com/mbaneshi/persian-cli/discussions) با عنوان `RFC NNNN: …` قرار می‌گیرند.
+- تازه‌وارد هستید؟ [مسئله‌های مناسب شروع](https://github.com/mbaneshi/persian-cli/labels/good%20first%20issue) را ببینید.
+
+کد با مجوز Apache-2.0 و مستندات، یادداشت‌های پژوهشی، ترجمه‌ها و مجموعه‌آزمون با مجوز CC BY 4.0 منتشر می‌شوند. همه از [آیین‌نامهٔ رفتاری](https://github.com/mbaneshi/persian-cli/blob/dev/CODE_OF_CONDUCT.md) پیروی می‌کنند.
+
+<LinkButton href="https://github.com/mbaneshi/persian-cli/blob/dev/CONTRIBUTING.md" icon="external">خواندن CONTRIBUTING.md</LinkButton>

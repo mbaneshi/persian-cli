@@ -35,6 +35,11 @@ export default defineConfig({
       sidebar: [
         { label: "Start here", translations: { fa: "شروع" }, items: [{ slug: "problem-map" }] },
         {
+          label: "Project",
+          translations: { fa: "پروژه" },
+          items: [{ slug: "roadmap" }, { slug: "contribute" }],
+        },
+        {
           label: "Prior work",
           translations: { fa: "کارهای پیشین" },
           items: [{ autogenerate: { directory: "prior-work" } }],

@@ -1,0 +1,20 @@
+name: Research question
+description: Propose a question to investigate from primary sources
+labels: ["type/research"]
+body:
+  - type: textarea
+    id: question
+    attributes: { label: The question, description: "One or two sentences. What do we not know yet?" }
+    validations: { required: true }
+  - type: dropdown
+    id: layer
+    attributes:
+      label: Layer
+      options: ["1 Encoding", "2 Input", "3 Width", "4 Shaping", "5 Bidi", "6 Cursor & copy", "7 Fonts", "8 Multiplexers", "9 Apps & TUI", "Cross-cutting"]
+    validations: { required: true }
+  - type: textarea
+    id: sources
+    attributes: { label: Primary sources to start from, description: "Specs, code, upstream issues. Links please." }
+  - type: textarea
+    id: done
+    attributes: { label: Done when…, description: "What does a finished answer look like? Usually a note in docs/research/ with sources." }

@@ -1,0 +1,51 @@
+---
+title: Roadmap
+description: Six phases from root-cause research to a bidi ownership standard, and where we are now.
+---
+
+import { Steps, Badge, CardGrid, LinkCard } from "@astrojs/starlight/components";
+
+The research program is proposed in [RFC 0001](https://github.com/mbaneshi/persian-cli/discussions/12) and is open for comment. Every phase is a [milestone](https://github.com/mbaneshi/persian-cli/milestones); every item is on the [roadmap board](https://github.com/users/mbaneshi/projects/22).
+
+<Steps>
+
+1. **Phase 0: Root-cause map** <Badge text="In progress" variant="caution" />
+
+   Primary-source notes on who owns what, layer by layer. The [prior-work survey](/persian-cli/prior-work/) is done.
+   *Exit:* every layer has a written root-cause note with sources.
+
+2. **Phase 1: Test corpus & scorecard** <Badge text="Next" variant="note" />
+
+   Hard test strings, plus a harness that scores any terminal + multiplexer + app stack.
+   *Exit:* a v0 scorecard published for at least 3 terminals.
+
+3. **Phase 2: Fonts & terminals** <Badge text="Planned" />
+
+   Font recommendations, configurations and upstream rendering fixes.
+
+4. **Phase 3: Multiplexers** <Badge text="Planned" />
+
+   Shaping and bidi passed through tmux and Zellij intact.
+
+5. **Phase 4: Editors & TUI frameworks** <Badge text="Planned" />
+
+   Fixes or plugins for Neovim, readline/zle, Ink, ratatui and similar.
+
+6. **Phase 5: Bidi ownership standard** <Badge text="Planned" />
+
+   Working with maintainers to finish and adopt a bidi negotiation standard.
+
+</Steps>
+
+## Current focus
+
+The three gaps the [prior-work survey](/persian-cli/prior-work/) found that nobody has touched, plus the corpus every fix will be measured against.
+
+<CardGrid>
+  <LinkCard title="Width: shaped text vs. the cell grid" description="Layer 3 · research · #13" href="https://github.com/mbaneshi/persian-cli/issues/13" />
+  <LinkCard title="Bidi ownership: terminal or app?" description="Layer 5 · research · RFC · #14" href="https://github.com/mbaneshi/persian-cli/issues/14" />
+  <LinkCard title="Multiplexers: tmux and Zellij" description="Layer 8 · research · #15" href="https://github.com/mbaneshi/persian-cli/issues/15" />
+  <LinkCard title="Test corpus v0" description="Phase 1 · good first issue · #17" href="https://github.com/mbaneshi/persian-cli/issues/17" />
+  <LinkCard title="Scorecard harness design" description="Phase 1 · RFC · #18" href="https://github.com/mbaneshi/persian-cli/issues/18" />
+  <LinkCard title="Reproduce: where does Persian break?" description="Hands-on · good first issue · #16" href="https://github.com/mbaneshi/persian-cli/issues/16" />
+</CardGrid>

@@ -1,0 +1,27 @@
+---
+// Starlight footer + an author credit linking mbaneshi.ir.
+import Default from "@astrojs/starlight/components/Footer.astro";
+const fa = Astro.locals.starlightRoute.locale === "fa";
+---
+
+<Default><slot /></Default>
+<p class="author">
+  {fa ? (
+    <>یک پروژهٔ <a href="https://mbaneshi.ir/fa/">مهدی بانشی</a> · <a href="https://mbaneshi.ir/fa/" dir="ltr">mbaneshi.ir</a></>
+  ) : (
+    <>A project by <a href="https://mbaneshi.ir">Mehdi Baneshi</a> · <a href="https://mbaneshi.ir">mbaneshi.ir</a></>
+  )}
+</p>
+
+<style>
+  .author {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--sl-color-hairline-light);
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-3);
+    text-align: center;
+  }
+  .author a { color: var(--sl-color-accent); text-decoration: none; font-weight: 600; }
+  .author a:hover { color: var(--sl-color-accent-high); text-decoration: underline; }
+</style>

@@ -143,6 +143,10 @@ This is an open lab, and most of the useful contributions right now aren't code:
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md) for how work is organised, and the [Code of Conduct](CODE_OF_CONDUCT.md).
 
+## Maintainer
+
+persian-cli is a project by [Mehdi Baneshi](https://mbaneshi.ir) ([@mbaneshi](https://github.com/mbaneshi)).
+
 ## License
 
 Code is licensed under [Apache-2.0](LICENSE). Documentation, research notes, translations and the test corpus are licensed under [CC BY 4.0](LICENSE-docs).

@@ -11,7 +11,7 @@ The starting list came from an LLM conversation, so **nothing in it was taken on
 3. read the implementation itself, cited file paths and line numbers, and kept **verified in code** separate from **claimed in the README**;
 4. scored it against our [nine layers](../../README.md#the-problem-map) and our [principles](../../README.md#principles).
 
-The deep notes, one file per project, live in [`prior-art/`](prior-art/). Each one records the commit that was read.
+The deep notes, one file per project, live in [`prior-art/`](prior-art/), with Persian translations in [`prior-art/fa/`](prior-art/fa/). Each one records the commit that was read. The website renders these files directly: [Prior work](https://mbaneshi.github.io/persian-cli/prior-work/) ([فارسی](https://mbaneshi.github.io/persian-cli/fa/prior-work/)).
 
 ## Catalog
 

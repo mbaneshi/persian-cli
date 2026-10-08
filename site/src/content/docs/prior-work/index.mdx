@@ -1,0 +1,24 @@
+---
+title: Prior work
+description: Ten earlier attempts at Persian/RTL in the terminal, each read in code and mapped onto our nine layers.
+sidebar:
+  label: Overview
+  order: 0
+tableOfContents: false
+---
+
+import PriorArtAtlas from "../../../components/PriorArtAtlas.astro";
+
+Several projects already attack parts of this problem. Before building anything, we read the **code** of each one, not just its README, and mapped what it actually does onto our [nine layers](/persian-cli/problem-map/).
+
+:::note[How this was checked]
+The starting list came from an LLM conversation, so nothing in it was taken on trust. Each project was confirmed to exist, cloned read-only (nothing was built or run), and read at a pinned commit. The per-project notes cite file paths and line numbers, and keep what is **verified in code** separate from what is only **claimed in the README**.
+:::
+
+<PriorArtAtlas lang="en" />
+
+## Foundations and history
+
+- **Neovim [#553](https://github.com/neovim/neovim/issues/553), "Bidi language support"**: open since 2014, with 47 comments. The problem is more than a decade old.
+- **[BiDi in Terminal Emulators](https://terminal-wg.pages.freedesktop.org/bidi/)** (Egmont Koblinger, 2019): the draft standard for who owns bidi, the terminal or the app. VTE implements it; none of the ten projects use it.
+- **Engines:** [HarfBuzz](https://harfbuzz.github.io/) for shaping; [FriBidi](https://github.com/fribidi/fribidi) and [ICU](https://icu.unicode.org/) for UAX #9. Every project that got shaping right delegated it to an engine like these.

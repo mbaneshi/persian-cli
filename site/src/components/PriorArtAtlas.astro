@@ -1,0 +1,273 @@
+---
+import { projects, layers, families, lessons, reuse, type Lang, type Status } from "../data/prior-art";
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const fa = lang === "fa";
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const page = (slug: string) => `${base}${fa ? "/fa" : ""}/prior-work/${slug}/`;
+const num = (n: number) => (fa ? n.toLocaleString("fa-IR") : String(n));
+
+const t = {
+  projects: { en: "projects read in code", fa: "پروژه، خوانده‌شده در سطح کد" },
+  width: { en: "solve width (layer 3)", fa: "پروژه پهنا را حل کرده (لایهٔ ۳)" },
+  mux: { en: "handle multiplexers (layer 8)", fa: "پروژه به مالتی‌پلکسرها پرداخته (لایهٔ ۸)" },
+  unlicensed: { en: "ship no license file", fa: "پروژه فایل مجوز ندارد" },
+  heatmap: { en: "Layer coverage", fa: "پوشش لایه‌ها" },
+  heatmapIntro: {
+    en: "Each row is a project; each column is one of our nine layers. Read across a row to see what a project covers, and down a column to see who has touched a layer.",
+    fa: "هر سطر یک پروژه است و هر ستون یکی از نُه لایهٔ ما. در طول سطر ببینید هر پروژه چه چیزی را پوشش می‌دهد، و در طول ستون ببینید چه کسی به یک لایه پرداخته است.",
+  },
+  legend: {
+    full: { en: "Solid", fa: "کامل" },
+    partial: { en: "Partial", fa: "نیمه" },
+    none: { en: "Absent", fa: "غایب" },
+    unknown: { en: "Not in the repo", fa: "در مخزن نیست" },
+  },
+  catalog: { en: "The projects", fa: "پروژه‌ها" },
+  shaping: { en: "Shaping", fa: "شکل‌دهی" },
+  bidi: { en: "Bidi", fa: "دوجهتی" },
+  noLicense: { en: "No license", fa: "بدون مجوز" },
+  notes: { en: "Read the notes", fa: "خواندن یادداشت‌ها" },
+  lessons: { en: "What the field tells us", fa: "آنچه این پروژه‌ها به ما می‌گویند" },
+  reuse: { en: "Worth reusing", fa: "ارزش برداشتن" },
+  from: { en: "From", fa: "از" },
+  what: { en: "What", fa: "چه چیزی" },
+  layer: { en: "Layers", fa: "لایه" },
+} as const;
+
+const glyph: Record<Status, string> = { full: "●", partial: "◐", none: "·", unknown: "?" };
+const stats = [
+  { n: projects.length, label: t.projects[lang] },
+  { n: projects.filter((p) => p.layers[2] === "full").length, label: t.width[lang] },
+  { n: projects.filter((p) => p.layers[7] !== "none").length, label: t.mux[lang] },
+  { n: projects.filter((p) => !p.license).length, label: t.unlicensed[lang] },
+];
+---
+
+<div class="atlas not-content">
+  <div class="stats">
+    {stats.map((s) => (
+      <div class="stat card-edge">
+        <span class="stat-n">{num(s.n)}</span>
+        <span class="stat-label">{s.label}</span>
+      </div>
+    ))}
+  </div>
+
+  <h2 class="atlas-h">{t.heatmap[lang]}</h2>
+  <p class="atlas-intro">{t.heatmapIntro[lang]}</p>
+  <div class="legend">
+    {(["full", "partial", "none", "unknown"] as Status[]).map((s) => (
+      <span class="legend-item"><span class={`cell s-${s}`} aria-hidden="true">{glyph[s]}</span>{t.legend[s][lang]}</span>
+    ))}
+  </div>
+  <div class="heat-scroll">
+    <table class="heat">
+      <thead>
+        <tr>
+          <th class="corner"></th>
+          {layers.map((l, i) => (
+            <th scope="col"><span class="col-no">{num(i + 1)}</span><span class="col-name">{l[lang]}</span></th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {projects.map((p) => (
+          <tr>
+            <th scope="row"><a href={page(p.slug)}>{p.name}</a></th>
+            {p.layers.map((s, i) => (
+              <td>
+                <span class={`cell s-${s}`} title={`${p.name} · ${layers[i][lang]} · ${t.legend[s][lang]}`}>
+                  {glyph[s]}<span class="sr-only">{t.legend[s][lang]}</span>
+                </span>
+              </td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="atlas-h">{t.catalog[lang]}</h2>
+  <div class="cards">
+    {projects.map((p) => (
+      <a class="pcard card-edge" href={page(p.slug)}>
+        <div class="pcard-top">
+          <span class={`fam fam-${p.family}`}>{families[p.family][lang]}</span>
+          <span class={`lic ${p.license ? "" : "lic-none"}`}>{p.license ?? t.noLicense[lang]}</span>
+        </div>
+        <h3 class="pcard-name" dir="ltr">{p.name}</h3>
+        <p class="pcard-kind">{p.kind[lang]} · {p.platform[lang]}</p>
+        <dl class="pcard-eng">
+          <dt>{t.shaping[lang]}</dt><dd>{p.shaping[lang]}</dd>
+          <dt>{t.bidi[lang]}</dt><dd>{p.bidi[lang]}</dd>
+        </dl>
+        <p class="pcard-verdict">{p.verdict[lang]}</p>
+        <div class="mini" aria-hidden="true">
+          {p.layers.map((s) => <span class={`mini-cell s-${s}`}></span>)}
+        </div>
+        <span class="pcard-more">{t.notes[lang]} {fa ? "←" : "→"}</span>
+      </a>
+    ))}
+  </div>
+
+  <h2 class="atlas-h">{t.lessons[lang]}</h2>
+  <ol class="lessons">
+    {lessons.map((l, i) => (
+      <li class="lesson">
+        <span class="lesson-no">{num(i + 1)}</span>
+        <div>
+          <h3>{l.title[lang]}</h3>
+          <p>{l.body[lang]}</p>
+        </div>
+      </li>
+    ))}
+  </ol>
+
+  <h2 class="atlas-h">{t.reuse[lang]}</h2>
+  <div class="heat-scroll">
+    <table class="reuse">
+      <thead><tr><th>{t.from[lang]}</th><th>{t.what[lang]}</th><th>{t.layer[lang]}</th></tr></thead>
+      <tbody>
+        {reuse.map((r) => {
+          const p = projects.find((x) => x.name === r.from);
+          return (
+            <tr>
+              <td><a href={p ? page(p.slug) : "#"} dir="ltr">{r.from}</a></td>
+              <td>{r.what[lang]}</td>
+              <td class="reuse-l">{fa ? r.layers.replace(/\d/g, (d) => num(+d)).replace("tests", "آزمون") : r.layers}</td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<style>
+  .atlas {
+    --c-full: #4fae9a;
+    --c-partial: #e5b53b;
+    --c-line: var(--sl-color-gray-5);
+    margin-top: 2rem;
+  }
+  .atlas-h {
+    font-family: var(--brand-display);
+    font-variation-settings: "opsz" 144, "SOFT" 30;
+    font-weight: 560;
+    font-size: var(--sl-text-h2);
+    color: var(--sl-color-white);
+    margin: 3rem 0 0.75rem;
+  }
+  :global(:root[lang="fa"]) .atlas-h { font-family: var(--brand-rtl); font-variation-settings: normal; font-weight: 800; }
+  .atlas-intro { color: var(--sl-color-gray-2); max-width: 46rem; margin: 0 0 1rem; }
+
+  .card-edge {
+    position: relative;
+    isolation: isolate;
+    border-radius: 0.75rem;
+    background: var(--sl-color-gray-6);
+  }
+  .card-edge::before {
+    content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none;
+    background:
+      linear-gradient(to bottom, transparent 0%, var(--c-line) 34%, var(--c-line) 66%, transparent 100%),
+      linear-gradient(90deg, #b84545, #d45b3f 50%, #e5b53b) top / 100% 50% no-repeat,
+      linear-gradient(90deg, #4fae9a, #4a86c5 50%, #8a6fb5) bottom / 100% 50% no-repeat;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    opacity: 0.85;
+  }
+
+  /* Stats strip */
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: 0.75rem; }
+  .stat { padding: 1rem 1.1rem; display: flex; flex-direction: column; gap: 0.25rem; }
+  .stat-n { font-family: var(--brand-display); font-size: 2.4rem; line-height: 1; color: var(--sl-color-accent-high); font-weight: 600; }
+  :global(:root[lang="fa"]) .stat-n { font-family: var(--brand-rtl); font-weight: 800; }
+  .stat-label { color: var(--sl-color-gray-2); font-size: var(--sl-text-sm); line-height: 1.4; }
+
+  /* Heat-map */
+  .legend { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 0.75rem; font-size: var(--sl-text-sm); color: var(--sl-color-gray-2); }
+  .legend-item { display: inline-flex; align-items: center; gap: 0.4rem; }
+  .heat-scroll { overflow-x: auto; border-radius: 0.75rem; border: 1px solid var(--c-line); background: var(--sl-color-gray-6); }
+  .heat { width: 100%; table-layout: fixed; min-width: 38rem; }
+  .heat tbody th, .heat thead .corner { width: 9.5rem; }
+  .reuse { width: 100%; border-collapse: collapse; font-size: var(--sl-text-sm); }
+  .heat { border-collapse: collapse; font-size: var(--sl-text-sm); }
+  .heat th, .heat td { padding: 0.4rem 0.15rem; text-align: center; border-bottom: 1px solid var(--c-line); }
+  .heat tbody tr:last-child > * { border-bottom: none; }
+  .heat thead th { vertical-align: bottom; color: var(--sl-color-gray-2); font-weight: 600; width: 3.4rem; }
+  .col-no { display: block; font-family: var(--sl-font-mono); color: var(--sl-color-accent); font-size: 0.75rem; }
+  .col-name { display: block; line-height: 1.15; font-size: 0.68rem; }
+  .heat tbody th { text-align: start; white-space: nowrap; font-weight: 600; padding-inline: 0.75rem 0.5rem; position: sticky; inset-inline-start: 0; background: var(--sl-color-gray-6); }
+  .heat tbody th a { color: var(--sl-color-white); text-decoration: none; direction: ltr; unicode-bidi: isolate; }
+  .heat tbody th a:hover { color: var(--sl-color-accent-high); }
+  .heat tbody tr:hover td, .heat tbody tr:hover th { background: color-mix(in srgb, var(--sl-color-accent) 8%, var(--sl-color-gray-6)); }
+
+  .cell {
+    display: inline-grid; place-items: center; width: 1.65rem; height: 1.65rem; border-radius: 0.4rem;
+    font-size: 0.8rem; font-weight: 700; line-height: 1;
+  }
+  .s-full { background: var(--c-full); color: #10251f; }
+  .s-partial { background: color-mix(in srgb, var(--c-partial) 30%, transparent); color: var(--sl-color-accent-high); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c-partial) 60%, transparent); }
+  .s-none { background: transparent; color: var(--sl-color-gray-4); box-shadow: inset 0 0 0 1px var(--c-line); }
+  .s-unknown { background: transparent; color: var(--sl-color-gray-3); outline: 1px dashed var(--sl-color-gray-4); outline-offset: -1px; }
+
+  /* Project cards */
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 1rem; }
+  .pcard {
+    display: flex; flex-direction: column; gap: 0.5rem; padding: 1.1rem 1.15rem 1rem;
+    color: var(--sl-color-gray-2); text-decoration: none;
+    transition: transform 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .pcard:hover { transform: translateY(-2px); }
+  .pcard:hover .pcard-more { color: var(--sl-color-accent-high); }
+  @media (prefers-reduced-motion: reduce) { .pcard { transition: none; } .pcard:hover { transform: none; } }
+  .pcard-top { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; }
+  .fam {
+    font-size: 0.7rem; font-weight: 800; letter-spacing: 0.04em; color: #fff; padding: 0.2rem 0.5rem; border-radius: 5px;
+    text-shadow: 0 1px 1px rgba(0,0,0,.45);
+    box-shadow: inset 1px 0 0 rgba(255,255,255,.45), inset -1px 0 0 rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.18), 0 3px 6px rgba(0,0,0,.35);
+  }
+  :global(:root[lang="fa"]) .fam { letter-spacing: 0; }
+  .fam-renderer { background: linear-gradient(90deg, #6CC5B2 0%, #4FAE9A 35%, #3E8E7E 100%); }
+  .fam-transform { background: linear-gradient(90deg, #E47A5B 0%, #D45B3F 35%, #B0482F 100%); }
+  .fam-wrapper { background: linear-gradient(90deg, #6BA2DA 0%, #4A86C5 35%, #3A6CA5 100%); }
+  .fam-prompt { background: linear-gradient(90deg, #A48BCE 0%, #8A6FB5 35%, #6E5896 100%); }
+  .lic { font-family: var(--sl-font-mono); font-size: 0.72rem; color: var(--sl-color-gray-3); }
+  .lic-none { color: #e47a5b; font-family: inherit; font-weight: 700; }
+  .pcard-name { margin: 0.25rem 0 0; font-family: var(--brand-display); font-size: 1.35rem; color: var(--sl-color-white); text-align: start; }
+  .pcard-kind { margin: 0; font-size: var(--sl-text-sm); color: var(--sl-color-gray-3); }
+  .pcard-eng { display: grid; grid-template-columns: auto 1fr; gap: 0.15rem 0.6rem; margin: 0.25rem 0 0; font-size: 0.8rem; }
+  .pcard-eng dt { color: var(--sl-color-accent); font-weight: 600; }
+  .pcard-eng dd { margin: 0; color: var(--sl-color-gray-2); }
+  .pcard-verdict { margin: 0.25rem 0 0; font-size: var(--sl-text-sm); line-height: 1.55; flex: 1; }
+  .mini { display: grid; grid-template-columns: repeat(9, 1fr); gap: 3px; margin-top: 0.25rem; }
+  .mini-cell { height: 6px; border-radius: 2px; }
+  .mini-cell.s-full { background: var(--c-full); }
+  .mini-cell.s-partial { background: var(--c-partial); opacity: 0.55; box-shadow: none; }
+  .mini-cell.s-none { background: var(--c-line); box-shadow: none; }
+  .mini-cell.s-unknown { background: transparent; outline: 1px dashed var(--sl-color-gray-4); }
+  .pcard-more { font-size: var(--sl-text-sm); font-weight: 600; color: var(--sl-color-accent); margin-top: 0.25rem; }
+
+  /* Lessons */
+  .lessons { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr)); gap: 1rem; }
+  .lesson { display: flex; gap: 0.9rem; padding: 1rem 1.1rem; border-radius: 0.75rem; background: var(--sl-color-gray-6); border-inline-start: 3px solid var(--sl-color-accent); }
+  .lesson-no { font-family: var(--brand-display); font-size: 1.8rem; line-height: 1; color: var(--sl-color-accent); min-width: 1.4rem; }
+  :global(:root[lang="fa"]) .lesson-no { font-family: var(--brand-rtl); font-weight: 800; }
+  .lesson h3 { margin: 0 0 0.35rem; font-size: 1.05rem; color: var(--sl-color-white); }
+  .lesson p { margin: 0; font-size: var(--sl-text-sm); line-height: 1.6; color: var(--sl-color-gray-2); }
+
+  /* Reuse table */
+  .reuse th, .reuse td { padding: 0.65rem 0.9rem; text-align: start; border-bottom: 1px solid var(--c-line); vertical-align: top; }
+  .reuse thead th { color: var(--sl-color-accent); font-weight: 700; }
+  .reuse tbody tr:last-child td { border-bottom: none; }
+  .reuse a { color: var(--sl-color-white); font-weight: 600; text-decoration: none; unicode-bidi: isolate; }
+  .reuse a:hover { color: var(--sl-color-accent-high); }
+  .reuse-l { white-space: nowrap; font-family: var(--sl-font-mono); color: var(--sl-color-gray-3); }
+
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+</style>

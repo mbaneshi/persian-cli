@@ -33,7 +33,12 @@ export default defineConfig({
         },
       },
       sidebar: [
-        { label: "Start here", translations: { fa: "شروع" }, items: [{ slug: "problem-map" }, { slug: "prior-work" }] },
+        { label: "Start here", translations: { fa: "شروع" }, items: [{ slug: "problem-map" }] },
+        {
+          label: "Prior work",
+          translations: { fa: "کارهای پیشین" },
+          items: [{ autogenerate: { directory: "prior-work" } }],
+        },
       ],
     }),
   ],

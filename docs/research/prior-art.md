@@ -28,7 +28,6 @@ The deep notes, one file per project, live in [`prior-art/`](prior-art/). Each o
 | [fa-console](prior-art/fa-console.md) | in-process stdout transform (Python) | Windows console | arabic-reshaper / table → **presentation forms** | python-bidi (UAX #9) or whole-line reversal | MIT | Reusable for **Layer 1** (UTF-8 setup, ي/ك → ی/ک, digit folding). The display path is a visual-order hack that corrupts ANSI |
 | [rtl-terminal](prior-art/rtl-terminal.md) | Claude Code plugin (prompt only) | Claude Code | none | asks the model to emit UAX #9 controls | MIT | Markdown only: no hook, no detection. Mutates content and can't be enforced. Its LRI-around-paths guidance and test corpus are worth taking |
 
-Our own earlier work (the Aug 2026 terminal-stack investigation and the mytodo Persian title cards) is in [`prior-art/our-earlier-work.md`](prior-art/our-earlier-work.md).
 
 ## Layer coverage
 

@@ -3,3 +3,6 @@
 
 # branch-rules: per-issue worktrees
 .worktrees/
+
+# claude-issue drafts
+.claude-drafts/

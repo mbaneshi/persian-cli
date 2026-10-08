@@ -1,0 +1,36 @@
+---
+title: persian-cli
+description: A research lab for making Persian a first-class language in the terminal.
+template: splash
+hero:
+  tagline: A research lab for making Persian, and every right-to-left joining script, a first-class language in the terminal.
+  actions:
+    - text: Read the problem map
+      link: /persian-cli/problem-map/
+      icon: right-arrow
+    - text: GitHub
+      link: https://github.com/mbaneshi/persian-cli
+      icon: github
+      variant: minimal
+---
+
+import { Card, CardGrid } from "@astrojs/starlight/components";
+
+> **North star:** a Persian speaker can do everything in a terminal that an English speaker can (**read, write, edit, search, select, copy and paste**) with no workarounds, in any terminal, multiplexer, editor or command-line app, on any operating system.
+
+<CardGrid>
+  <Card title="Shaping" icon="puzzle">
+    A letter's form depends on its neighbours. A grid of independent cells draws them disconnected.
+  </Card>
+  <Card title="Bidi" icon="random">
+    Visual order depends on the whole paragraph (UAX #9). Words come out reversed, numbers misplaced, brackets unmirrored.
+  </Card>
+  <Card title="Width" icon="seti:grain">
+    لا is two characters but one glyph, and ZWNJ has no width. The app and the terminal disagree about where the cursor is.
+  </Card>
+  <Card title="Ownership" icon="warning">
+    Nobody has settled whether the terminal or the app owns bidi. If both do it, the text is reversed twice.
+  </Card>
+</CardGrid>
+
+**Status: Day 0.** Phase 0, the [root-cause map](https://github.com/mbaneshi/persian-cli/issues/2), is underway.

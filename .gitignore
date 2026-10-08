@@ -6,3 +6,6 @@
 
 # claude-issue drafts
 .claude-drafts/
+
+# local clones of prior-art repos (read-only research)
+.research/

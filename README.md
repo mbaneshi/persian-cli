@@ -70,6 +70,10 @@ they are right, fixing anything above them just moves the bug somewhere else.
 | 8 | **Multiplexers** | tmux and Zellij pass shaping and bidi through without breaking them |
 | 9 | **Apps & TUI frameworks** | Editors (Neovim, Vim, Emacs), line editors (readline, zle), and TUI frameworks (Ink, ratatui, ncurses, Bubble Tea) handle the text correctly |
 
+## Prior work
+
+Ten earlier projects attack parts of this problem: terminal emulators, PTY proxies, overlays and plugins. We read each one's code and mapped it onto the nine layers. See [`docs/research/prior-art.md`](docs/research/prior-art.md) or the [Prior work page](https://mbaneshi.github.io/persian-cli/prior-work/). In short: no project solves width (layer 3) or multiplexers (layer 8), none negotiates bidi ownership, and every tool that rewrote the text broke copy and search.
+
 ## Principles
 
 1. **Store and transmit text in logical order; reorder only at display time.**
